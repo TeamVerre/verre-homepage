@@ -7,9 +7,9 @@ ADD . /usr/share/nginx/html;
 
 RUN cd /usr/share/nginx/html;
 
-RUN build -t verre-homepage .;
+#RUN build -t verre-homepage .;
 
-#COPY ./verre-homepage /usr/share/nginx/html
+#COPY verre-homepage /usr/share/nginx/html;
 
-RUN --name verre-homepage -d verre-homepage;
-RUN --name verre-homepage -d -p 443:80 verre-homepage;
+#RUN --name verre-homepage -d verre-homepage;
+#RUN --name verre-homepage -d -p 443:80 verre-homepage;
