@@ -1,4 +1,5 @@
 FROM nginx
+RUN cd ..;
 COPY verre-homepage /usr/share/nginx/html
 
 RUN --name some-nginx -d some-content-nginx;
