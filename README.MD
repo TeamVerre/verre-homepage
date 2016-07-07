@@ -4,27 +4,26 @@
 #### Notes on creating the Docker file
 
 Using Nginx as my webserver to serve the website.
+Using Node.JS and Express to deliver the pages.
 
-##### [Dockerfile] (../Dockerfile)
+##### [Dockerfile] (Dockerfile)
 ```bash
-FROM nginx
+# DOCKER-VERSION 1.1.2
+FROM    node:argon
 
-# Download and Install Updates
-RUN    apt-get -y update;
-RUN    apt-get -y install build-essential;
+# Install Node.js and npm
+RUN    apt-get -y update
+RUN    apt-get -y install build-essential
 
-# Move Static Website Files to serving directory
-ADD . /usr/share/nginx/html;
+# Bundle app source
+ADD . /src
+# Install app dependencies
+RUN cd /src; npm install
+
+CMD ["node", "/src/app.js"]
 ```
 
 ######Refrences Used:
----
-
-[docker-library/docs - NGINX] (https://github.com/docker-library/docs/tree/master/nginx)
-[NGINX - Configuring HTTPS servers] (http://nginx.org/en/docs/http/configuring_https_servers.html)
-[NGINX - Beginner’s Guide] (http://nginx.org/en/docs/beginners_guide.html)
-
----
-
-![alt text](http://nginx.org/nginx.png "NGINX")
-![alt text](https://www.docker.com/sites/default/files/docker_banner_image_12312.svg "Docker")
+[docker-library/docs - NGINX] (https://github.com/docker-library/docs/tree/master/nginx) |
+[NGINX - Configuring HTTPS servers] (http://nginx.org/en/docs/http/configuring_https_servers.html) |
+[Express - Serving static files in Express] (http://expressjs.com/en/starter/static-files.html)

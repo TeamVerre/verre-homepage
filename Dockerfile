@@ -1,12 +1,13 @@
-FROM nginx
+# DOCKER-VERSION 1.1.2
+FROM    node:argon
 
-# Download and Install Updates
-RUN    apt-get -y update;
-RUN    apt-get -y install build-essential;
+# Install Node.js and npm
+RUN    apt-get -y update
+RUN    apt-get -y install build-essential
 
-# Move Static Website Files to serving directory
-COPY . /usr/share/nginx/html;
+# Bundle app source
+ADD . /src
+# Install app dependencies
+RUN cd /src; npm install
 
-CMD ["docker build", "-t verre-here-website ."]
-
-CMD ["docker run", "--name some-nginx -d verre-here-website"]
+CMD ["node", "/src/app.js"]
