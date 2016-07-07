@@ -4,6 +4,7 @@ FROM kyma/docker-nginx
 # COPY path/to/your/default /etc/nginx/sites-enabled/default
 
 # Add src.
+ADD . /src
 COPY src/ /var/www
 
 CMD 'nginx'
