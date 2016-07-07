@@ -4,4 +4,4 @@ FROM nginx
 RUN    apt-get -y update;
 RUN    apt-get -y install build-essential;
 
-COPY . /etc/cloud66/webroot;
+COPY . /etc/cloud66/webroot/
